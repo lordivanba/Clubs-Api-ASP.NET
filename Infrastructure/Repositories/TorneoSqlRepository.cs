@@ -5,22 +5,23 @@ using clubs_api.Infrastructure.Data;
 
 namespace clubs_api.Infrastructure.Repositories
 {
-    public class ClubSqlRepository
+    public class TorneoSqlRepository
     {
         private readonly clubsdbContext _context;
 
-        public ClubSqlRepository()
+        public TorneoSqlRepository()
         {
             _context = new clubsdbContext();
         }
-        public IEnumerable<Club> GetClubs()
-        {        
-            return _context.Clubs.Select(club => club);
+
+        public IEnumerable<Torneo> GetTorneos()
+        {
+            return _context.Torneos.Select(torneo => torneo);
         }
 
-        public Club GetClubById(int id)
+        public Torneo GetTorneoById(int id)
         {
-            return _context.Clubs.Single(club => club.Id == id);
+            return _context.Torneos.Single(torneo => torneo.Id == id);
         }
     }
 }
