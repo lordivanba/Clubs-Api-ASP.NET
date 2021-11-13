@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CKaEq/+SK3dyHelE4iXEjtHDH25pj1SE7VAFdiqtf+X0u4eAxHKt+OcooIMQK+GL3s9yl81nX1aOTdEWQXBQyQ==",
+  "dgSpecHash": "Tme1NN74Rq0FxxIyWCXxJShR9GpHpRLZtF4klXWi3Zeo2uT03A/nlPL847TweYVopi2eBVhPxnCb1SZnFMomuA==",
   "success": true,
   "projectFilePath": "C:\\Users\\viern\\OneDrive\\Documents\\Code\\finding-test\\Clubs-API\\clubs-api\\clubs-api.csproj",
   "expectedPackageFiles": [
@@ -105,7 +105,8 @@
     "C:\\Users\\viern\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\viern\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\viern\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\viern\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\viern\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\viern\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
   ],
   "logs": []
 }

@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using clubs_api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using clubs_api.Domain.Interfaces;
+using clubs_api.Infrastructure.Repositories;
 
 namespace clubs_api
 {
@@ -35,7 +37,11 @@ namespace clubs_api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "clubs_api", Version = "v1" });
             });
             services.AddDbContext<clubsdbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ClubsDB")));
+                options.UseSqlServer(Configuration.GetConnectionString("test01")));
+            /*            services.AddDbContext<clubsdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("test01")));*/
+            services.AddTransient<IClubSqlRepository, ClubSqlRepository>();
+            services.AddTransient<ITorneoSqlRepository, TorneoSqlRepository>();
+            services.AddTransient<IServicioClubSqlRepository, ServicioClubSqlRepository>();
 
         }
 

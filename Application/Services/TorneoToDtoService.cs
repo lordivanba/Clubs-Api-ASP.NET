@@ -9,7 +9,7 @@ namespace clubs_api.Application.Services
     {
         public TorneoDto ObjectToDto(Torneo torneo)
         {
-            return new TorneoDto(
+            return  new TorneoDto(
                 Id: torneo.Id,
                 Disciplina: torneo.Disciplina,
                 NumeroEquipos: torneo.NumeroEquipos,
@@ -22,6 +22,7 @@ namespace clubs_api.Application.Services
                 Estatus: torneo.Estatus,
                 FechaRegistro: torneo.FechaRegistro
             );
+            
         }
 
         public IEnumerable<TorneoDto> ObjectsToDtos(IEnumerable<Torneo> torneos)

@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using clubs_api.Domain.Entities;
+using clubs_api.Domain.Interfaces;
 using clubs_api.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace clubs_api.Infrastructure.Repositories
 {
-    public class ClubSqlRepository
+    public class ClubSqlRepository : IClubSqlRepository
     {
         private readonly clubsdbContext _context;
 
@@ -13,14 +16,16 @@ namespace clubs_api.Infrastructure.Repositories
         {
             _context = new clubsdbContext();
         }
-        public IEnumerable<Club> GetClubs()
-        {        
-            return _context.Clubs.Select(club => club);
+        public async Task<IEnumerable<Club>> GetClubs()
+        {
+            var query = _context.Clubs.Select(club => club);
+            return await query.ToListAsync();
         }
 
-        public Club GetClubById(int id)
+        public async Task<Club> GetClubById(int id)
         {
-            return _context.Clubs.Single(club => club.Id == id);
+            var query = _context.Clubs.FindAsync(id);
+            return await query;
         }
     }
 }

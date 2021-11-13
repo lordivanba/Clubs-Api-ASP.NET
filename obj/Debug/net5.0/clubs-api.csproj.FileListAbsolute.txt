@@ -19,7 +19,6 @@ C:\Users\viern\OneDrive\Documents\Code\finding-test\Clubs-API\clubs-api\obj\Debu
 C:\Users\viern\OneDrive\Documents\Code\finding-test\Clubs-API\clubs-api\obj\Debug\net5.0\clubs-api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\viern\OneDrive\Documents\Code\finding-test\Clubs-API\clubs-api\obj\Debug\net5.0\clubs-api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\viern\OneDrive\Documents\Code\finding-test\Clubs-API\clubs-api\obj\Debug\net5.0\staticwebassets\clubs-api.StaticWebAssets.Manifest.cache
-C:\Users\viern\OneDrive\Documents\Code\finding-test\Clubs-API\clubs-api\obj\Debug\net5.0\staticwebassets\clubs-api.StaticWebAssets.xml
 C:\Users\viern\OneDrive\Documents\Code\finding-test\Clubs-API\clubs-api\obj\Debug\net5.0\scopedcss\bundle\clubs-api.styles.css
 C:\Users\viern\OneDrive\Documents\Code\finding-test\Clubs-API\clubs-api\obj\Debug\net5.0\clubs-api.RazorTargetAssemblyInfo.cache
 C:\Users\viern\OneDrive\Documents\Code\finding-test\Clubs-API\clubs-api\obj\Debug\net5.0\clubs-api.csproj.CopyComplete
