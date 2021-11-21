@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using clubs_api.Domain.Dtos;
 using clubs_api.Domain.Entities;
+using clubs_api.Domain.Interfaces;
 
 namespace clubs_api.Application.Services
 {
-    public class TorneoToDtoService
+    public class TorneoService :  ITorneoService
     {
         public TorneoDto ObjectToDto(Torneo torneo)
         {

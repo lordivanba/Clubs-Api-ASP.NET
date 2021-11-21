@@ -11,33 +11,32 @@ namespace clubs_api.Controllers
     public class ServicioClubController : ControllerBase
     {
         private readonly IServicioClubSqlRepository repository;
-        public ServicioClubController(IServicioClubSqlRepository _repository)
+        private readonly IServicioClubService service;
+        public ServicioClubController(IServicioClubSqlRepository _repository, IServicioClubService _service)
         {
-              repository = _repository; 
+            repository = _repository;
+            service = _service;
+                
         }
 
         [HttpGet]
-        [Route("getServicios")]
+        [Route("")]
         public async Task<IActionResult> GetServicios()
         {
-            var repository = new ServicioClubSqlRepository();
-            var srv = new ServicioToDtoService();
             var servicios = await repository.GetServicios();
-            var response = srv.ObjectsToDtos(servicios);
+            var response = service.ObjectsToDtos(servicios);
 
             return Ok(response);
         }
 
         [HttpGet]
-        [Route("getServicio/{id::int}")]
+        [Route("{id::int}")]
         public async Task<IActionResult> GetServicioById(int id)
         {
-            var repository = new ServicioClubSqlRepository();
-            var srv = new ServicioToDtoService();
             var servicio = await repository.GetServicioById(id);
             if (servicio == null)
                 return NotFound("No se ha encontrado un servicio que corresponda con el ID proporcionado");
-            var response = srv.ObjectToDto(servicio);
+            var response = service.ObjectToDto(servicio);
             
             return Ok(response);
         }

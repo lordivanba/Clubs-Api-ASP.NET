@@ -15,6 +15,8 @@ using clubs_api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using clubs_api.Domain.Interfaces;
 using clubs_api.Infrastructure.Repositories;
+using clubs_api.Application.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace clubs_api
 {
@@ -42,6 +44,10 @@ namespace clubs_api
             services.AddTransient<IClubSqlRepository, ClubSqlRepository>();
             services.AddTransient<ITorneoSqlRepository, TorneoSqlRepository>();
             services.AddTransient<IServicioClubSqlRepository, ServicioClubSqlRepository>();
+            services.AddScoped<IClubService, ClubService>();
+            services.AddScoped<IServicioClubService, ServicioClubService>();
+            services.AddScoped<ITorneoService, TorneoService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         }
 

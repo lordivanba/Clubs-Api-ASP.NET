@@ -11,31 +11,29 @@ namespace clubs_api.Controllers
     public class TorneoController : ControllerBase
     {
         private readonly ITorneoSqlRepository repository;
-        public TorneoController(ITorneoSqlRepository _repository)
+        private readonly ITorneoService service;
+        public TorneoController(ITorneoSqlRepository _repository, ITorneoService _service)
         {
             repository = _repository;
+            service = _service;
         }
 
         [HttpGet]
-        [HttpGet("getTorneos")]
+        [Route("")]
         public async Task<IActionResult> GetTorneos()
         {
-            var repository = new TorneoSqlRepository();
-            var srv = new TorneoToDtoService();
             var torneos = await repository.GetTorneos();
-            var response = srv.ObjectsToDtos(torneos);
+            var response = service.ObjectsToDtos(torneos);
             return Ok(response);
         }
 
         [HttpGet]
-        [Route("getTorneo/{id::int}")]
+        [Route("{id::int}")]
         public async Task<IActionResult> GetTorneoById(int id){
-            var repository = new TorneoSqlRepository();
-            var srv = new TorneoToDtoService();
             var torneo = await repository.GetTorneoById(id);
             if (torneo == null)
                 return NotFound("No se ha encontrado un torneo que corresponda con el ID proporcionado");
-            var response = srv.ObjectToDto(torneo);
+            var response = service.ObjectToDto(torneo);
 
             return Ok(response);
         }

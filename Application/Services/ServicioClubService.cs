@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using clubs_api.Domain.Dtos;
 using clubs_api.Domain.Entities;
+using clubs_api.Domain.Interfaces;
 
 namespace clubs_api.Application.Services
 {
-    public class ServicioToDtoService
+    public class ServicioClubService : IServicioClubService
     {
         public ServicioClubDto ObjectToDto(ServicioClub servicio){
             return new ServicioClubDto(

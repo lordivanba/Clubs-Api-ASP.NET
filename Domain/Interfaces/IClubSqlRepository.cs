@@ -10,5 +10,11 @@ namespace clubs_api.Domain.Interfaces
         Task<IEnumerable<Club>> GetClubs();
 
         Task<Club> GetClubById(int id);
+
+        Task<IEnumerable<Club>> GetByFilter(Club club);
+
+        Task<int> CreateClub(Club club);
+
+        Task<bool> UpdateClub(int id, Club club);
     }
 }
