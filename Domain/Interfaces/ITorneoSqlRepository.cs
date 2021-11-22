@@ -9,5 +9,8 @@ namespace clubs_api.Domain.Interfaces
     {
         Task<IEnumerable<Torneo>> GetTorneos();
         Task<Torneo> GetTorneoById(int id);
+        Task<IEnumerable<Torneo>> GetByFilter(Torneo torneo);
+        Task<int> CreateTorneo(Torneo torneo);
+        Task<bool> UpdateTorneo(int id, Torneo torneo);
     }
 }

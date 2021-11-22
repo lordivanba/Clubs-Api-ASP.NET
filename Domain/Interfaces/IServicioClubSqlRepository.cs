@@ -8,6 +8,8 @@ namespace clubs_api.Domain.Interfaces
     {
         Task<IEnumerable<ServicioClub>> GetServicios();
         Task<ServicioClub> GetServicioById(int id);
-
+        Task<IEnumerable<ServicioClub>> GetByFilter(ServicioClub servicio);
+        Task<int> CreateServicio(ServicioClub servicio);
+        Task<bool> UpdateServicio(int id, ServicioClub servicio);
     }
 }

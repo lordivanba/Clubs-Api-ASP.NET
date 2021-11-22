@@ -18,5 +18,6 @@ namespace clubs_api.Domain.Entities
         public DateTime? FechaRegistro { get; set; }
         public string Resultado { get; set; }
         public string Estatus { get; set; }
+
     }
 }

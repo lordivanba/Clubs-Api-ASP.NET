@@ -31,5 +31,47 @@ namespace clubs_api.Application.Services
                 FechaRegistro: servicio.FechaRegistro
             ));
         }
+
+        public ServicioClub DtoToObject(ServicioClubFilterDto dto)
+        {
+            //if (string.IsNullOrEmpty(dto.Disciplina) && string.IsNullOrEmpty(dto.Horario))
+               // return null;
+
+            var servicio = new ServicioClub
+            {
+                Id = 0,
+                Disciplina = dto.Disciplina,
+                Horario = dto.Horario,
+                PersonasPermitidas =  dto.PersonasPermitidas,
+                RequiereEquipoEspecial = dto.RequiereEquipoEspecial,
+                CapacidadesDiferentes = dto.CapacidadesDiferentes
+            };
+
+            return servicio;
+        }
+
+        public bool ValidateCreate(ServicioClub servicio)
+        {
+            if (string.IsNullOrEmpty(servicio.Disciplina))
+                return false;
+            if (string.IsNullOrEmpty(servicio.Horario))
+                return false;
+            if (servicio.PersonasPermitidas < 1)
+                return false;
+            return true;
+        }
+
+        public bool ValidateUpdate(ServicioClub servicio)
+        {
+            if (servicio.Id <= 0)
+                return false;
+            if (string.IsNullOrEmpty(servicio.Disciplina))
+                return false;
+            if (string.IsNullOrEmpty(servicio.Horario))
+                return false;
+            if (servicio.PersonasPermitidas < 1)
+                return false;
+            return true;
+        }
     }
 }

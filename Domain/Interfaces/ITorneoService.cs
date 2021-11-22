@@ -8,5 +8,8 @@ namespace clubs_api.Domain.Interfaces
     {
         TorneoDto ObjectToDto(Torneo torneo);
         IEnumerable<TorneoDto> ObjectsToDtos(IEnumerable<Torneo> torneos);
+        Torneo DtoToObject(TorneoFilterDto dto);
+        bool ValidateCreate(Torneo torneo);
+        bool ValidateUpdate(Torneo torneo);
     }
 }

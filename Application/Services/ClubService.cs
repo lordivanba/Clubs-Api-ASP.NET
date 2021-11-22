@@ -60,12 +60,16 @@ namespace clubs_api.Application.Services
         {
             if (club.Id <= 0)
                 return false;
+
             if (string.IsNullOrEmpty(club.Nombre))
                 return false;
+
             if (string.IsNullOrEmpty(club.Direccion))
                 return false;
+
             if (string.IsNullOrEmpty(club.Telefono))
                 return false;
+
             return true;
         }
     }

@@ -8,5 +8,8 @@ namespace clubs_api.Domain.Interfaces
     {
         ServicioClubDto ObjectToDto(ServicioClub servicio);
         IEnumerable<ServicioClubDto> ObjectsToDtos(IEnumerable<ServicioClub> servicios);
+        ServicioClub DtoToObject(ServicioClubFilterDto dto);
+        bool ValidateCreate(ServicioClub servicio);
+        bool ValidateUpdate(ServicioClub servicio);
     }
 }
