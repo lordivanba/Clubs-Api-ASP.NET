@@ -1,11 +1,13 @@
-using clubs_api.Application.Services;
+using AutoMapper;
 using clubs_api.Domain.Dtos;
+using clubs_api.Domain.Dtos.Requests;
+using clubs_api.Domain.Dtos.Responses;
 using clubs_api.Domain.Entities;
 using clubs_api.Domain.Interfaces;
-using clubs_api.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,12 +20,14 @@ namespace clubs_api.Controllers
         private readonly IClubSqlRepository repository;
         private readonly IClubService service;
         private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly IMapper mapper;
 
-        public ClubController(IClubSqlRepository _repository, IClubService _service, IHttpContextAccessor _httpContextAccessor)
+        public ClubController(IClubSqlRepository _repository, IClubService _service, IHttpContextAccessor _httpContextAccessor, IMapper _mapper)
         {
             repository = _repository;
             service = _service;
             httpContextAccessor = _httpContextAccessor;
+            mapper = _mapper;
         }
 
         [HttpGet]
@@ -31,7 +35,8 @@ namespace clubs_api.Controllers
         public async Task<IActionResult> GetClubs()
         {   
             var clubs = await repository.GetClubs();
-            var response = service.ObjectsToDtos(clubs);
+            var response =  mapper.Map<IEnumerable<Club>, IEnumerable<ClubResponseDto>>(clubs);
+
             return Ok(response);
         }
 
@@ -42,7 +47,7 @@ namespace clubs_api.Controllers
             var club = await repository.GetClubById(id);
             if (club == null)
                 return NotFound("No se ha encontrado un club que corresponda con el ID proporcionado");
-            var response = service.ObjectToDto(club);
+            var response = mapper.Map<Club, ClubResponseDto>(club);
 
             return Ok(response);
         }
@@ -51,26 +56,26 @@ namespace clubs_api.Controllers
         [Route("GetByFilter")]
         public async Task<IActionResult> GetClubByFilter(ClubFilterDto dto)
         {
-            var club = service.DtoToObject(dto);
+            var club = mapper.Map<ClubFilterDto, Club>(dto);
             var clubs = await repository.GetByFilter(club);
-
             if (!clubs.Any())
                 return NotFound("No se ha encontrado un club que coincida con la informacion proporcionada");
+            var response = mapper.Map<IEnumerable<Club>, IEnumerable<ClubResponseDto>>(clubs);
 
-            var response = service.ObjectsToDtos(clubs);
             return Ok(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateClub(Club club)
+        public async Task<IActionResult> CreateClub(ClubCreateRequest club)
         {
-            var validate = service.ValidateCreate(club);
-            if (!validate)
-                return UnprocessableEntity("El registro no puede ser realizado a falta de informacion");
+            var obj = mapper.Map<ClubCreateRequest, Club>(club);
+            // var validate = service.ValidateCreate(obj);
+            // if (!validate)
+            //     return UnprocessableEntity("El registro no puede ser realizado a falta de informacion");
             int id;
             try
             {
-                id = await repository.CreateClub(club);
+                id = await repository.CreateClub(obj);
             }
             catch (Exception e)
             {
@@ -87,21 +92,23 @@ namespace clubs_api.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> UpdateClub(int id, [FromBody] Club club)
+        public async Task<IActionResult> UpdateClub(int id, [FromBody] ClubUpdateRequest club)
         {
+            var obj = mapper.Map<ClubUpdateRequest, Club>(club);
+
             if (id <= 0)
                 return NotFound("No se encontro un registro que coincida con la informacion proporcionada");
 
-            if (club == null)
+            if (obj == null)
                 return UnprocessableEntity("La actualizacion no puede ser realizada a falta de informacion");
-            club.Id = id;
+            obj.Id = id;
 
-            var validate = service.ValidateUpdate(club);
-            if (!validate)
-                return UnprocessableEntity("La actualizacion no puede ser realizada, verifica tu informacion");
+            // var validate = service.ValidateUpdate(obj);
+            // if (!validate)
+            //     return UnprocessableEntity("La actualizacion no puede ser realizada, verifica tu informacion");
             try
             {
-                var result = await repository.UpdateClub(id,club);
+                var result = await repository.UpdateClub(id,obj);
                 if (!result)
                     return Conflict("No fue posible realizar la actualizacion, verifica su informacion");
             }catch(Exception e)

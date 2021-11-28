@@ -58,7 +58,7 @@ namespace clubs_api.Infrastructure.Repositories
                 var rows = await _context.SaveChangesAsync();
 
                 if (rows <= 0)
-                    throw new Exception("Ocurrió un fallo al intentar registrar el club, verifica la información ingresada");
+                    throw new Exception("Ocurriï¿½ un fallo al intentar registrar el club, verifica la informaciï¿½n ingresada");
                 return entity.Id;
             }
             catch (DbUpdateException  exEf)

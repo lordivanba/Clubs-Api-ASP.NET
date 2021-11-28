@@ -20,13 +20,17 @@ namespace clubs_api.Infrastructure.Repositories
 
         public async Task<IEnumerable<ServicioClub>> GetServicios()
         {
-            var query = _context.ServicioClubs.Select(ServicioClub => ServicioClub);
+            // var query = _context.ServicioClubs.Select(ServicioClub => ServicioClub);
+            var query = _context.ServicioClubs.Include(x => x.Club);
+
             return await query.ToListAsync();
         }
 
         public async Task<ServicioClub> GetServicioById(int id)
         {
-            var query = _context.ServicioClubs.FindAsync(id);
+            // var query = _context.ServicioClubs.FindAsync(id);
+            var query = _context.ServicioClubs.Include(x => x.Club).FirstOrDefaultAsync(x => x.Id == id);
+
             return await query;
         }
 
@@ -67,7 +71,7 @@ namespace clubs_api.Infrastructure.Repositories
                 var rows = await _context.SaveChangesAsync();
 
                 if (rows <= 0)
-                    throw new Exception("Ocurrió un fallo al intentar registrar el servicio, verifica la información ingresada");
+                    throw new Exception("Ocurriï¿½ un fallo al intentar registrar el servicio, verifica la informaciï¿½n ingresada");
                 return entity.Id;
             }
             catch (Exception ex) {

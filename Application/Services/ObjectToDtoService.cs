@@ -8,26 +8,26 @@ namespace clubs_api.Application.Services
     public class ObjectToDtoService
     {
         //CLUBS
-        public ClubDto ObjectToDto(Club club)
-        {
-            return new ClubDto(
-                Id: club.Id,
-                Nombre: club.Nombre,
-                Direccion: club.Direccion,
-                Telefono: club.Telefono,
-                FechaRegistro: club.FechaRegistro
-            );
-        }
+        // public ClubDto ObjectToDto(Club club)
+        // {
+        //     return new ClubDto(
+        //         Id: club.Id,
+        //         Nombre: club.Nombre,
+        //         Direccion: club.Direccion,
+        //         Telefono: club.Telefono,
+        //         FechaRegistro: club.FechaRegistro
+        //     );
+        // }
 
-        public IEnumerable<ClubDto> ObjectsToDtos(IEnumerable<Club> clubs)
-        {
-            return clubs.Select(club => new ClubDto(
-                Id: club.Id,
-                Nombre: club.Nombre,
-                Direccion: club.Direccion,
-                Telefono: club.Telefono,
-                FechaRegistro: club.FechaRegistro
-            ));
-        }
+        // public IEnumerable<ClubDto> ObjectsToDtos(IEnumerable<Club> clubs)
+        // {
+        //     return clubs.Select(club => new ClubDto(
+        //         Id: club.Id,
+        //         Nombre: club.Nombre,
+        //         Direccion: club.Direccion,
+        //         Telefono: club.Telefono,
+        //         FechaRegistro: club.FechaRegistro
+        //     ));
+        // }
     }
 }
