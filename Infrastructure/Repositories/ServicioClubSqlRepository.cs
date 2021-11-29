@@ -28,8 +28,14 @@ namespace clubs_api.Infrastructure.Repositories
 
         public async Task<ServicioClub> GetServicioById(int id)
         {
-            // var query = _context.ServicioClubs.FindAsync(id);
             var query = _context.ServicioClubs.Include(x => x.Club).FirstOrDefaultAsync(x => x.Id == id);
+
+            return await query;
+        }
+
+        public async Task<IEnumerable<ServicioClub>> GetServicioByClubId(int id)
+        {
+            var query = _context.ServicioClubs.Include(x => x.Club).Where(x => x.ClubId == id).ToListAsync();
 
             return await query;
         }

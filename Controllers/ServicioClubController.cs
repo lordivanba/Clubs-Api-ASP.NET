@@ -63,6 +63,17 @@ namespace clubs_api.Controllers
 
             return Ok(response);
         }
+        [HttpGet]
+        [Route("Club/{id::int}")]
+        public async Task<IActionResult> GetServicioByClubId(int id)
+        {
+            var servicios = await repository.GetServicioByClubId(id);
+            if (!servicios.Any())
+                return NotFound("No se ha encontrado un servicio que corresponda con el ID proporcionado");
+            var response = mapper.Map<IEnumerable<ServicioClub>, IEnumerable<ServicioClubResponseDto>>(servicios);
+
+            return Ok(response);
+        }
 
         [HttpGet]
         [Route("GetByFilter")]
