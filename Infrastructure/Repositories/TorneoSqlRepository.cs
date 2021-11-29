@@ -23,7 +23,7 @@ namespace clubs_api.Infrastructure.Repositories
             var query = _context.Torneos.Select(torneo => torneo);
             return await query.ToListAsync();
         }
-
+        
         public async Task<Torneo> GetTorneoById(int id)
         {
             var query = _context.Torneos.FindAsync(id);
@@ -36,6 +36,9 @@ namespace clubs_api.Infrastructure.Repositories
                 return new List<Torneo>();
 
             var query = _context.Torneos.Select(torneo => torneo);
+
+            if (!string.IsNullOrEmpty(torneo.Nombre))
+                query = query.Where(x => x.Nombre.Contains(torneo.Nombre));
 
             if (!string.IsNullOrEmpty(torneo.Disciplina))
                 query = query.Where(x => x.Disciplina.Contains(torneo.Disciplina));
@@ -75,7 +78,7 @@ namespace clubs_api.Infrastructure.Repositories
                 var rows = await _context.SaveChangesAsync();
 
                 if(rows <= 0)
-                    throw new Exception("Ocurrió un fallo al intentar registrar el torneo, verifica la información ingresada");
+                    throw new Exception("Ocurriï¿½ un fallo al intentar registrar el torneo, verifica la informaciï¿½n ingresada");
                 return entity.Id;
             }
             catch(Exception e)
@@ -84,12 +87,14 @@ namespace clubs_api.Infrastructure.Repositories
             }
         }
 
+
         public async Task<bool> UpdateTorneo(int id, Torneo torneo)
         {
             if(id <= 0 || torneo == null)
                 throw new ArgumentNullException("La actualizacion no se pudo realizar a falta de informacion");
             var entity = await GetTorneoById(id);
 
+            entity.Nombre = torneo.Nombre;
             entity.Disciplina = torneo.Disciplina;
             entity.NumeroEquipos = torneo.NumeroEquipos;
             entity.DisponibilidadLugares = torneo.DisponibilidadLugares;

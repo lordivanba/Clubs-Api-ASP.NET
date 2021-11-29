@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Http;
 using FluentValidation;
 using clubs_api.Domain.Dtos.Requests;
 using clubs_api.Infrastructure.Validators;
+using clubs_api.Domain.Entities;
 
 namespace clubs_api
 {
@@ -42,12 +43,11 @@ namespace clubs_api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "clubs_api", Version = "v1" });
             });
             services.AddDbContext<clubsdbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("test01")));
-            /*            services.AddDbContext<clubsdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("test01")));*/
-
+                options.UseSqlServer(Configuration.GetConnectionString("ClubsDb")));
             services.AddTransient<IClubSqlRepository, ClubSqlRepository>();
             services.AddTransient<ITorneoSqlRepository, TorneoSqlRepository>();
             services.AddTransient<IServicioClubSqlRepository, ServicioClubSqlRepository>();
+            services.AddTransient<IParticipanteTorneoSqlRepository, ParticipanteTorneoSqlRepository>();
 
             services.AddScoped<IClubService, ClubService>();
             services.AddScoped<IServicioClubService, ServicioClubService>();
@@ -65,6 +65,8 @@ namespace clubs_api
 
             services.AddScoped<IValidator<TorneoCreateRequest>, TorneoCreateRequestValidator>();
             services.AddScoped<IValidator<TorneoUpdateRequest>, TorneoUpdateRequestValidator>();
+
+            services.AddScoped<IValidator<ParticipanteTorneoCreateRequest>, ParticipanteTorneoCreateRequestValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

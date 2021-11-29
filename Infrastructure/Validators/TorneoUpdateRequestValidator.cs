@@ -8,6 +8,7 @@ namespace clubs_api.Infrastructure.Validators
     {
         public TorneoUpdateRequestValidator()
         {
+            RuleFor(torneo => torneo.Nombre).NotEmpty();
             RuleFor(torneo => torneo.Disciplina).NotEmpty();
             RuleFor(torneo => torneo.NumeroEquipos).GreaterThanOrEqualTo(1);
             RuleFor(torneo => torneo.DisponibilidadLugares).GreaterThanOrEqualTo(1);

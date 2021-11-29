@@ -4,6 +4,7 @@ namespace clubs_api.Domain.Dtos.Requests
 {
     public class TorneoCreateRequest
     {
+        public string Nombre { get; set; }
         public string Disciplina { get; set; }
         public int? NumeroEquipos { get; set; }
         public int? DisponibilidadLugares { get; set; }

@@ -96,7 +96,7 @@ namespace clubs_api.Controllers
             }
 
             if (id <= 0)
-                return Conflict("El registro puede ser realizado, verifica tu informacion");
+                return Conflict("El registro no puede ser realizado, verifica tu informacion");
 
             var host = httpContextAccessor.HttpContext.Request.Host.Value;
             var urlResult = $"https://{host}/api/Club/{id}";

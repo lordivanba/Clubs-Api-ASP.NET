@@ -28,6 +28,12 @@ namespace clubs_api.Application.Mappings
             CreateMap<TorneoCreateRequest, Torneo>();
             CreateMap<TorneoUpdateRequest, Torneo>();
             CreateMap<TorneoFilterDto, Torneo>();
+
+            //PARTICIPANTES
+            CreateMap<ParticipanteTorneo, ParticipanteTorneoResponseDto>()
+            .ForMember(dest => dest.Torneo, opt => opt.MapFrom(src => src.Torneo.Nombre))
+            .ForMember(dest => dest.Club, opt => opt.MapFrom(src => src.Club.Nombre));
+            CreateMap<ParticipanteTorneoCreateRequest, ParticipanteTorneo>();
         }
     }
 }

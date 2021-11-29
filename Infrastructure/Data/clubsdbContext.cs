@@ -19,6 +19,7 @@ namespace clubs_api.Infrastructure.Data
         }
 
         public virtual DbSet<Club> Clubs { get; set; }
+        public virtual DbSet<ParticipanteTorneo> ParticipanteTorneos { get; set; }
         public virtual DbSet<ServicioClub> ServicioClubs { get; set; }
         public virtual DbSet<Torneo> Torneos { get; set; }
 
@@ -52,6 +53,21 @@ namespace clubs_api.Infrastructure.Data
                 entity.Property(e => e.Telefono)
                     .HasMaxLength(75)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ParticipanteTorneo>(entity =>
+            {
+                entity.ToTable("ParticipanteTorneo");
+
+                entity.HasOne(d => d.Club)
+                    .WithMany(p => p.ParticipanteTorneos)
+                    .HasForeignKey(d => d.ClubId)
+                    .HasConstraintName("FK__Participa__ClubI__70DDC3D8");
+
+                entity.HasOne(d => d.Torneo)
+                    .WithMany(p => p.ParticipanteTorneos)
+                    .HasForeignKey(d => d.TorneoId)
+                    .HasConstraintName("FK__Participa__Torne__6FE99F9F");
             });
 
             modelBuilder.Entity<ServicioClub>(entity =>
@@ -92,6 +108,10 @@ namespace clubs_api.Infrastructure.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.FechaRegistro).HasColumnType("date");
+
+                entity.Property(e => e.Nombre)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Resultado)
                     .HasMaxLength(75)

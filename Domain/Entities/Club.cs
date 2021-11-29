@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using clubs_api.Domain.Interfaces;
 
 #nullable disable
 
@@ -10,6 +9,7 @@ namespace clubs_api.Domain.Entities
     {
         public Club()
         {
+            ParticipanteTorneos = new HashSet<ParticipanteTorneo>();
             ServicioClubs = new HashSet<ServicioClub>();
         }
 
@@ -19,6 +19,7 @@ namespace clubs_api.Domain.Entities
         public string Telefono { get; set; }
         public DateTime? FechaRegistro { get; set; }
 
+        public virtual ICollection<ParticipanteTorneo> ParticipanteTorneos { get; set; }
         public virtual ICollection<ServicioClub> ServicioClubs { get; set; }
     }
 }

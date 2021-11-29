@@ -66,6 +66,18 @@ namespace clubs_api.Controllers
         }
 
         [HttpGet]
+        [Route("{id::int}/participantes")]
+        public async Task<IActionResult> GetTorneoWithParticipantesById(int id)
+        {
+            var torneo = await repository.GetTorneoById(id);
+            if (torneo == null)
+                return NotFound("No se ha encontrado un torneo que corresponda con el ID proporcionado");
+            var response = mapper.Map<Torneo, TorneoResponseDto>(torneo);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
         [Route("GetByFilter")]
         public async Task<IActionResult> GetTorneoByFilter(TorneoFilterDto dto)
         {
@@ -100,7 +112,7 @@ namespace clubs_api.Controllers
             }
 
             if (id <= 0)
-                return Conflict("El registro puede ser realizado, verifica tu informacion");
+                return Conflict("El registro no puede ser realizado, verifica tu informacion");
 
             var host = httpContextAccessor.HttpContext.Request.Host.Value;
             var urlResult = $"https://{host}/api/Torneo/{id}";
