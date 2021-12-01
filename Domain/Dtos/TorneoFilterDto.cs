@@ -3,6 +3,7 @@
 namespace clubs_api.Domain.Dtos
 {
     public record TorneoFilterDto(
+        string Nombre,
         string Disciplina,
         int? NumeroEquipos,
         int? DisponibilidadLugares,

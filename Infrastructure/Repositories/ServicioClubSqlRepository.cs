@@ -45,7 +45,7 @@ namespace clubs_api.Infrastructure.Repositories
             if (servicio == null)
                 return new List<ServicioClub>();
 
-            var query = _context.ServicioClubs.Select(servicio => servicio);
+            var query = _context.ServicioClubs.Include(servicio => servicio.Club).Select(x => x);
 
             if (!string.IsNullOrEmpty(servicio.Disciplina))
                 query = query.Where(x => x.Disciplina.Contains(servicio.Disciplina));

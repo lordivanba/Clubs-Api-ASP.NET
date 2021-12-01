@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "M+lrGuT1EUR/dEG7RpCjBL54TzBsAK4RdtCwEo73xGs5VMRxr5b8jQ2mVgAxb12tzzcDh1eou48wdq5YZnds8g==",
+  "dgSpecHash": "8jltfg5Wi4wJxJjgSDLxrJP46+2qsGEKD8U72qLOCZz0tKhlXa7xbzz1QrIliwtYZyiuPCsJ8ZQt1xTNY/1GIQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\viern\\OneDrive\\Documents\\Code\\finding-test\\Clubs-API\\clubs-api\\clubs-api.csproj",
+  "projectFilePath": "C:\\Users\\viern\\OneDrive\\Escritorio\\Test\\Clubs-Api-ASP.NET\\clubs-api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\viern\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\viern\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
