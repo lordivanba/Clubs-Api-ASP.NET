@@ -59,6 +59,7 @@ namespace clubs_api
 
             services.AddScoped<IValidator<ClubCreateRequest>, ClubCreateRequestValidator>();
             services.AddScoped<IValidator<ClubUpdateRequest>, ClubUpdateRequestValidator>();
+            services.AddScoped<IValidator<ClubDistanceRequest>, ClubDistanceRequestValidator>();
 
             services.AddScoped<IValidator<ServicioClubCreateRequest>, ServicioClubCreateRequestValidator>();
             services.AddScoped<IValidator<ServicioClubUpdateRequest>, ServicioClubUpdateRequestValidator>();

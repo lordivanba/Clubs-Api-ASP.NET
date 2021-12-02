@@ -24,6 +24,7 @@ namespace clubs_api.Controllers
         private readonly IMapper mapper;
         private readonly IValidator<ClubCreateRequest> createValidator;
         private readonly IValidator<ClubUpdateRequest> updateValidator;
+        private readonly IValidator<ClubDistanceRequest> distanceValidator;
 
         public ClubController(
             IClubSqlRepository _repository,
@@ -31,7 +32,8 @@ namespace clubs_api.Controllers
             IHttpContextAccessor _httpContextAccessor,
             IMapper _mapper,
             IValidator<ClubCreateRequest> _createValidator,
-            IValidator<ClubUpdateRequest> _updateValidator)
+            IValidator<ClubUpdateRequest> _updateValidator,
+            IValidator<ClubDistanceRequest> _distanceValidator)
         {
             repository = _repository;
             service = _service;
@@ -39,6 +41,7 @@ namespace clubs_api.Controllers
             mapper = _mapper;
             createValidator = _createValidator;
             updateValidator = _updateValidator;
+            distanceValidator = _distanceValidator;
         }
 
         [HttpGet]
@@ -72,6 +75,31 @@ namespace clubs_api.Controllers
             if (!clubs.Any())
                 return NotFound("No se ha encontrado un club que coincida con la informacion proporcionada");
             var response = mapper.Map<IEnumerable<Club>, IEnumerable<ClubResponseDto>>(clubs);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("GetDistance/{id::int}")]
+        public async Task<IActionResult> GetClubDistance(int id, [FromBody] ClubDistanceRequest distance)
+        {
+            var validate = await distanceValidator.ValidateAsync(distance);
+             if (!validate.IsValid)
+                return UnprocessableEntity(validate.Errors.Select(x => $"{x.PropertyName} => {x.ErrorMessage}"));
+                
+            var club = await repository.GetClubById(id);
+            if (club == null)
+                return NotFound("No se ha encontrado un club que corresponda con el ID proporcionado");
+
+            var x1 = Convert.ToDouble(distance.CoordenadaX);
+            var x2 = Convert.ToDouble(club.CoordenadaX);
+            var y1 = Convert.ToDouble(distance.CoordenadaY);
+            var y2 = Convert.ToDouble(club.CoordenadaY);
+            var result = Math.Sqrt((Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2))) * 10;
+            var response = new ClubDistanceResponseDto{
+                CoordenadasClub = $"{club.CoordenadaX}, {club.CoordenadaY}",
+                Distancia = result
+            };
 
             return Ok(response);
         }

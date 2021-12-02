@@ -18,6 +18,10 @@ namespace clubs_api.Domain.Entities
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public DateTime? FechaRegistro { get; set; }
+        public double? CoordenadaX { get; set; }
+        public double? CoordenadaY { get; set; }
+        public string Horario { get; set; }
+        public string Logo { get; set; }
 
         public virtual ICollection<ParticipanteTorneo> ParticipanteTorneos { get; set; }
         public virtual ICollection<ServicioClub> ServicioClubs { get; set; }

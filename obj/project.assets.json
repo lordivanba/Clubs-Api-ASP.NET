@@ -6046,11 +6046,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\viern\\OneDrive\\Escritorio\\Test\\Clubs-Api-ASP.NET\\clubs-api.csproj",
+      "projectUniqueName": "C:\\Users\\viern\\OneDrive\\Escritorio\\Api\\Clubs-Api-ASP.NET\\clubs-api.csproj",
       "projectName": "clubs-api",
-      "projectPath": "C:\\Users\\viern\\OneDrive\\Escritorio\\Test\\Clubs-Api-ASP.NET\\clubs-api.csproj",
+      "projectPath": "C:\\Users\\viern\\OneDrive\\Escritorio\\Api\\Clubs-Api-ASP.NET\\clubs-api.csproj",
       "packagesPath": "C:\\Users\\viern\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\viern\\OneDrive\\Escritorio\\Test\\Clubs-Api-ASP.NET\\obj\\",
+      "outputPath": "C:\\Users\\viern\\OneDrive\\Escritorio\\Api\\Clubs-Api-ASP.NET\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

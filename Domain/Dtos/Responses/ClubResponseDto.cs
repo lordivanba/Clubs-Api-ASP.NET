@@ -9,7 +9,9 @@ namespace clubs_api.Domain.Dtos.Responses
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
+        public string Horario { get; set; }
         public string Telefono { get; set; }
+        public string Geoubicacion { get; set; }
         public DateTime? FechaRegistro { get; set; }
     }
 }

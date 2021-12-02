@@ -45,6 +45,14 @@ namespace clubs_api.Infrastructure.Data
 
                 entity.Property(e => e.FechaRegistro).HasColumnType("date");
 
+                entity.Property(e => e.Horario)
+                    .HasMaxLength(75)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Logo)
+                    .HasMaxLength(75)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Nombre)
                     .IsRequired()
                     .HasMaxLength(50)

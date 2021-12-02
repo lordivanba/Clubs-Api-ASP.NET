@@ -11,7 +11,8 @@ namespace clubs_api.Application.Mappings
         public AutoMapperProfile()
         {
             //CLUBS
-            CreateMap<Club, ClubResponseDto>();
+            CreateMap<Club, ClubResponseDto>()
+            .ForMember(dest => dest.Geoubicacion, opt => opt.MapFrom(src => (src.CoordenadaX != null && src.CoordenadaY != null) ? $"{src.CoordenadaX}, {src.CoordenadaY}" : null));
             CreateMap<ClubCreateRequest, Club>();
             CreateMap<ClubUpdateRequest, Club>();
             CreateMap<ClubFilterDto, Club>();

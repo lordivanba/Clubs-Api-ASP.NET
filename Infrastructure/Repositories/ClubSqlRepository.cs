@@ -75,7 +75,10 @@ namespace clubs_api.Infrastructure.Repositories
 
             entity.Nombre = club.Nombre;
             entity.Direccion = club.Direccion;
+            entity.Horario = club.Horario;
             entity.Telefono = club.Telefono;
+            entity.CoordenadaX = club.CoordenadaX;
+            entity.CoordenadaY = club.CoordenadaY;
 
             _context.Update(entity);
 
